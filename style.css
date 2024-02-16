@@ -2,6 +2,13 @@
     font-family: sans-serif;
     font-size: medium;
 }
+.toggler{
+    border-radius: 5px;
+    padding-block: 1.6%;
+    margin: 0;
+    background: rgb(218, 220, 224);
+}
+
 .screen{
     width: 99%;
     padding-block: 4%;
@@ -9,6 +16,8 @@
     margin-bottom: 1.4%;
     border: 1px solid gray;
     outline: none;
+    font-size: x-large;
+    text-align: right;
 }
 .screen:hover{
     border-top: 2px solid black;
@@ -43,5 +52,5 @@
 }
 
 .calc-container button:active{
-    border: 1px solid black;
+    box-shadow:0 0 0 1px black;
 }
