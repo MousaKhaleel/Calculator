@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="9zbgyN-LogoMakr.png">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="calc-container">
+    <form action="">
+        <input type="text" id="screen" class="screen" value="" readonly>
+        <br>
+        <!-- merge add onclick add values add css and js -->
+        <button type="button" id="Rad" class="btnDark" value="" onclick="">Rad</button>
+        <button type="button" id="Deg" class="btnDark" value="" onclick="">Deg</button>
+        <button type="button" id="x!" class="btnDark" value="" onclick="">x!</button>
+        <button type="button" id="lp" class="btnDark" value="(" onclick="setText(document.getElementById('lp').value)">(</button>
+        <button type="button" id="rp" class="btnDark" value=")" onclick="setText(document.getElementById('rp').value)">)</button>
+        <button type="button" id="mod" class="btnDark" value="" onclick="setText(document.getElementById('mod').value)">%</button>
+        <button type="button" id="CE" class="btnDark" value="" onclick="clearCE()">CE</button>
+        <br>
+        <button type="button" id="lnv" class="btnDark" value="" onclick="setText(document.getElementById('').value)">lnv</button>
+        <button type="button" id="sin" class="btnDark" value="" onclick="setText(document.getElementById('').value)">sin</button>
+        <button type="button" id="ln" class="btnDark" value="" onclick="setText(document.getElementById('').value)">ln</button>
+        <button type="button" id="seven" class="btnLight" value="7" onclick="setText(document.getElementById('seven').value)">7</button>
+        <button type="button" id="eight" class="btnLight" value="8" onclick="setText(document.getElementById('eight').value)">8</button>
+        <button type="button" id="nine" class="btnLight" value="9" onclick="setText(document.getElementById('nine').value)">9</button>
+        <button type="button" id="divistion" class="btnDark" value="/" onclick="setText(document.getElementById('divistion').value)">÷</button>
+        <br>
+        <button type="button" id="pi" class="btnDark" value="3.14" onclick="setText(document.getElementById('').value)">π</button>
+        <button type="button" id="cos" class="btnDark" value="" onclick="setText(document.getElementById('').value)">cos</button>
+        <button type="button" id="log" class="btnDark" value="" onclick="setText(document.getElementById('').value)">log</button>
+        <button type="button" id="four" class="btnLight" value="4" onclick="setText(document.getElementById('four').value)">4</button>
+        <button type="button" id="five" class="btnLight" value="5" onclick="setText(document.getElementById('five').value)">5</button>
+        <button type="button" id="six" class="btnLight" value="6" onclick="setText(document.getElementById('six').value)">6</button>
+        <button type="button" id="multiply" class="btnDark" value="*" onclick="setText(document.getElementById('multiply').value)">x</button>
+        <br>
+        <button type="button" id="e" class="btnDark" value="" onclick="">e</button>
+        <button type="button" id="tan" class="btnDark" value="" onclick="setText(document.getElementById('').value)">tan</button>
+        <button type="button" id="" class="btnDark" value="" onclick="">√</button>
+        <button type="button" id="one" class="btnLight" value="1" onclick="setText(document.getElementById('one').value)">1</button>
+        <button type="button" id="two" class="btnLight" value="2" onclick="setText(document.getElementById('two').value)">2</button>
+        <button type="button" id="three" class="btnLight" value="3" onclick="setText(document.getElementById('three').value)">3</button>
+        <button type="button" id="subtract" class="btnDark" value="-" onclick="setText(document.getElementById('subtract').value)">-</button>
+        <br>
+        <button type="button" id="" class="btnDark" value="" onclick="">Ans</button>
+        <button type="button" id="" class="btnDark" value="" onclick="">EXP</button>
+        <button type="button" id="" class="btnDark" value="" onclick="">x<sup style="font-size: xx-small;">y</sup></button>
+        <button type="button" id="zero" class="btnLight" value="0" onclick="setText(document.getElementById('zero').value)">0</button>
+        <button type="button" id="dot" class="btnLight" value="." onclick="setText(document.getElementById('dot').value)">.</button>
+        <button type="button" id="" class="btnCalc" value="" onclick="prepareOp(document.getElementById('screen').value)">=</button>
+        <button type="button" id="sum" class="btnDark" value="+" onclick="setText(document.getElementById('sum').value)">+</button>
+        <br>
+    </form>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
