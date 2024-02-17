@@ -2,12 +2,14 @@
     font-family: sans-serif;
     font-size: medium;
 }
-.toggler{
-    border-radius: 5px;
-    padding-block: 1.6%;
-    margin: 0;
-    background: rgb(218, 220, 224);
+
+.calc-container{
+    margin-inline: 27%;
+    margin-block: 13%;
+    width: 46%;
+    height: 24%;
 }
+
 
 .screen{
     width: 99%;
@@ -20,8 +22,16 @@
     text-align: right;
 }
 .screen:hover{
-    border-top: 2px solid black;
+    box-shadow: 0px -1px 0px black;
 }
+
+.toggler{
+    border-radius: 5px;
+    padding-block: 1.6%;
+    margin: 0;
+    background: rgb(218, 220, 224);
+}
+
 .btnDark{
     background: rgb(218, 220, 224);
 }
@@ -33,14 +43,6 @@
     background: rgb(66, 133, 244);
     color: white;
 }
-
-.calc-container{
-    margin-inline: 20%;
-    margin-block: 10%;
-    width: 46%;
-    height: 24%;
-}
-
 .calc-container button{
     border-radius: 5px;
     border: 0;
@@ -50,7 +52,6 @@
     width: 12.9%;
     text-align: center;
 }
-
 .calc-container button:active{
     box-shadow:0 0 0 1px black;
 }

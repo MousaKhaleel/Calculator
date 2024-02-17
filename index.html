@@ -18,14 +18,14 @@
         <input type="radio" name="type" id="Deg" class="redioStyle"></label> -->
         <!-- merge add onclick add values add css and js -->
         <span class="toggler">
-        <button type="button" id="Rad" class="btnDark" value="" onclick="toggle()">Rad</button>
-        <button type="button" id="Deg" class="btnDark" value="" onclick="toggle()" disabled>Deg</button>
+        <button type="button" id="Rad" class="btnDark" value="" onclick="toggle()" disabled>Rad</button>
+        <button type="button" id="Deg" class="btnDark" value="" onclick="toggle()">Deg</button>
     </span>
-        <button type="button" id="x!" class="btnDark" onclick="factorial()">x!</button>
+        <button type="button" id="x!" class="btnDark" value="!" onclick="setText(document.getElementById('x!').value)">x!</button>
 
         <button type="button" id="lp" class="btnDark" value="(" onclick="setText(document.getElementById('lp').value)">(</button>
         <button type="button" id="rp" class="btnDark" value=")" onclick="setText(document.getElementById('rp').value)">)</button>
-        <button type="button" id="mod" class="btnDark" value="" onclick="setText(document.getElementById('mod').value)">%</button>
+        <button type="button" id="mod" class="btnDark" value="%" onclick="setText(document.getElementById('mod').value)">%</button>
         <button type="button" id="CE" class="btnDark" onclick="clearCE()">CE</button>
         <br>
         <button type="button" id="lnv" class="btnDark" value="normal" onclick="replace()">lnv</button>
