@@ -225,8 +225,8 @@ function calcC(o1, o2, op, holder) {
 function calcFunction(func,holder) {
     console.log(func)
     let functionName = func.substring(0, func.indexOf('('));
-    console.log(functionName)
     let angle = parseFloat(func.substring(func.indexOf('(') + 1, func.indexOf(')')));
+    if(deg.disabled){
     switch (functionName) {
         case 'sin':
             result = Math.sin(angle);
@@ -259,6 +259,41 @@ function calcFunction(func,holder) {
             console.log("Invalid function");
             return;
     }
+}
+else{
+    switch (functionName) {
+        case 'sin':
+            result = Math.sin(toRad(angle));
+            break;
+        case 'cos':
+            result = Math.cos(toRad(angle));
+            break;
+        case 'tan':
+            result = Math.tan(toRad(angle));
+            break;
+        case 'asin':
+            result = Math.asin(toRad(angle));
+            break;
+        case 'acos':
+            result = Math.acos(toRad(angle));
+            break;
+        case 'atan':
+            result = Math.atan(toRad(angle));
+            break;
+        case 'log':
+            result = Math.log(angle);
+            break;
+        case 'ln':
+            result = Math.log(angle);
+            break;
+        case 'sqrt':
+            result = Math.sqrt(angle);
+            break;
+        default:
+            console.log("Invalid function");
+            return;
+    }
+}
     if (holder === "") {
         screen.value = result;
     } else {
