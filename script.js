@@ -22,82 +22,85 @@ function setText(sent) {
     screen.value+=sent;
 }
 function clearCE() {
-    screen.value='';
+    let temp = screen.value;
+    temp = temp.toString();
+    temp = temp.slice(0, -1);
+    screen.value = temp;
 }
 
-function prepareOp(a) {
-    let result = parseFloat(a[0]);
-    // let result=0;
-    // for (let i = 1; i < a.length; i++){
-    //     if (typeof currentArg === 'string' && !(currentArg === '+' || currentArg === '-' || currentArg === '*' || currentArg === '/' || currentArg=== '%' || currentArg==='sin(' || currentArg==='cos(' || currentArg==='tan(' || currentArg==='√(' || currentArg==='E' || currentArg==='log(')){
-    //     result += parseFloat(a[i]);
-    //     break;
-    //     }
-    let operator = '';
+// function prepareOp(a) {
+//     let result = parseFloat(a[0]);
+//     // let result=0;
+//     // for (let i = 1; i < a.length; i++){
+//     //     if (typeof currentArg === 'string' && !(currentArg === '+' || currentArg === '-' || currentArg === '*' || currentArg === '/' || currentArg=== '%' || currentArg==='sin(' || currentArg==='cos(' || currentArg==='tan(' || currentArg==='√(' || currentArg==='E' || currentArg==='log(')){
+//     //     result += parseFloat(a[i]);
+//     //     break;
+//     //     }
+//     let operator = '';
 
-    for (let i = 1; i < a.length; i++) {
-        const currentArg = a[i];
-        if (typeof currentArg === 'string' && (currentArg === '+' || currentArg === '-' || currentArg === '*' || currentArg === '/' || currentArg=== '%' || currentArg==='sin(' || currentArg==='cos(' || currentArg==='tan(' || currentArg==='√(' || currentArg==='E' || currentArg==='log(')){
-            operator = currentArg;
-        }
-        else if (typeof currentArg === 'number' || !isNaN(parseFloat(currentArg))){
-            switch (operator) {
-                case '+':
-                    result += parseFloat(currentArg);
-                    break;
-                case '-':
-                    result -= parseFloat(currentArg);
-                    break;
-                case '*':
-                    result *= parseFloat(currentArg);
-                    break;
-                case '/':
-                    if (parseFloat(currentArg) !== 0) {
-                        result /= parseFloat(currentArg);
-                    } else {
-                        console.log("Can't divide by zero");
-                    }
-                    break;
-                    case '!':
-                    result =factorial(parseFloat(currentArg));
-                    break;
-                    case '%':
-                        result %=parseFloat(currentArg);
-                        break;
-                    case 'sin(':
-                        result =Math.sin(parseFloat(currentArg.substring(4)));
-                        break;
-                    case 'cos(':
-                        result =Math.cos(parseFloat(currentArg.substring(4)));
-                        break;
-                    case 'tan(':
-                        result =Math.tan(parseFloat(currentArg.substring(4)));
-                        break;
-                    case 'log(':
-                        result =Math.log(parseFloat(currentArg.substring(4)));
-                        break;
-                    case 'E':
-                        result =parseFloat(currentArg);
-                        break;
-                    case '√(':
-                        result =Math.sqrt(parseFloat(currentArg.substring(2)));
-                        break;
-                default:
-                    console.log("Invalid operator");
-                    return;
-            }
-        }
-        else{
-            screen.value = 'error';
-            return;
-        }
-    }
-    if (rad.disabled) {
-        screen.value = result;
-    }
-    else
-    screen.value = toRad(result);
-}
+//     for (let i = 1; i < a.length; i++) {
+//         const currentArg = a[i];
+//         if (typeof currentArg === 'string' && (currentArg === '+' || currentArg === '-' || currentArg === '*' || currentArg === '/' || currentArg=== '%' || currentArg==='sin(' || currentArg==='cos(' || currentArg==='tan(' || currentArg==='√(' || currentArg==='E' || currentArg==='log(')){
+//             operator = currentArg;
+//         }
+//         else if (typeof currentArg === 'number' || !isNaN(parseFloat(currentArg))){
+//             switch (operator) {
+//                 case '+':
+//                     result += parseFloat(currentArg);
+//                     break;
+//                 case '-':
+//                     result -= parseFloat(currentArg);
+//                     break;
+//                 case '*':
+//                     result *= parseFloat(currentArg);
+//                     break;
+//                 case '/':
+//                     if (parseFloat(currentArg) !== 0) {
+//                         result /= parseFloat(currentArg);
+//                     } else {
+//                         console.log("Can't divide by zero");
+//                     }
+//                     break;
+//                     case '!':
+//                     result =factorial(parseFloat(currentArg));
+//                     break;
+//                     case '%':
+//                         result %=parseFloat(currentArg);
+//                         break;
+//                     case 'sin(':
+//                         result =Math.sin(parseFloat(currentArg.substring(4)));
+//                         break;
+//                     case 'cos(':
+//                         result =Math.cos(parseFloat(currentArg.substring(4)));
+//                         break;
+//                     case 'tan(':
+//                         result =Math.tan(parseFloat(currentArg.substring(4)));
+//                         break;
+//                     case 'log(':
+//                         result =Math.log(parseFloat(currentArg.substring(4)));
+//                         break;
+//                     case 'E':
+//                         result =parseFloat(currentArg);
+//                         break;
+//                     case '√(':
+//                         result =Math.sqrt(parseFloat(currentArg.substring(2)));
+//                         break;
+//                 default:
+//                     console.log("Invalid operator");
+//                     return;
+//             }
+//         }
+//         else{
+//             screen.value = 'error';
+//             return;
+//         }
+//     }
+//     if (rad.disabled) {
+//         screen.value = result;
+//     }
+//     else
+//     screen.value = toRad(result);
+// }
 
 function toggle() {
     if (deg.disabled) {
