@@ -51,12 +51,29 @@ function calc(a) {
             tempO1.push(i);
             holder = holder.slice(1);
             operand1 = Number(tempO1.join(''));
-        } else if (!isNaN(i) && operation !== null) {
+        }
+        // ///////////////////////////////////////////////////////
+        else if (!isNaN(i) && operation !== null) {
             tempO2.push(i);
             holder = holder.slice(1);
             operand2 = Number(tempO2.join(''));
             calcC(operand1, operand2, operation, holder);
-        } else {
+        }
+        // ///////////////////////////////////////////////////////////////////////
+        else if (i === 's'||'c'||'t') {
+            let func = "";
+            let j = holder.indexOf(')');
+            if (j !== -1) {
+                func = holder.substring(0, j + 1);
+                holder = holder.substring(j + 1);
+                calcFunction(func,holder);
+            } else {
+                console.log("Invalid function");
+                return;
+            }
+        }
+        // //////////////////////////////////////////////////
+        else {
             operation = i;
             holder = holder.slice(1);
         }
@@ -87,26 +104,52 @@ function calcC(o1, o2, op, holder) {
         case '%':
             result = o1 % o2;
             break;
-        case 'sin(':
-            result = Math.sin();
-            break;
-        case 'cos(':
-            result = Math.cos();
-            break;
-        case 'tan(':
-            result = Math.tan();
-            break;
-        case 'log(':
-            result = Math.log();
-            break;
-        case 'E':
-            result = Math.E;
-            break;
-        case '√(':
-            result = Math.sqrt();
-            break;
         default:
             console.log("Invalid operator");
+            return;
+    }
+    if (holder === "") {
+        screen.value = result;
+    } else {
+        calc(holder);
+    }
+}
+
+function calcFunction(func,holder) {
+    console.log(func)
+    let functionName = func.substring(0, func.indexOf('('));
+    console.log(functionName)
+    let angle = parseFloat(func.substring(func.indexOf('(') + 1, func.indexOf(')')));
+    switch (functionName) {
+        case 'sin':
+            result = Math.sin(angle);
+            break;
+        case 'cos':
+            result = Math.cos(angle);
+            break;
+        case 'tan':
+            result = Math.tan(angle);
+            break;
+        case 'asin':
+            result = Math.asin(angle);
+            break;
+        case 'acos':
+            result = Math.acos(angle);
+            break;
+        case 'atan':
+            result = Math.atan(angle);
+            break;
+        case 'log':
+            result = Math.log(angle);
+            break;
+        case 'ln':
+            result = Math.log(angle);
+            break;
+        case 'sqrt':
+            result = Math.sqrt(angle);
+            break;
+        default:
+            console.log("Invalid function");
             return;
     }
     if (holder === "") {
@@ -275,4 +318,103 @@ function replace(){
 //     }
 //     else
 //     screen.value = toRad(result);
+// }
+
+// ///////////////////////////packup//////////////////////////////////
+
+// let operand1 = 0;
+// let operand2 = 0;
+// let operation = null;
+// let result = 0;
+// let tempO1 = [];
+// let tempO2 = [];
+
+// function calc(a) {
+//     tempO1 = [];
+//     tempO2 = [];
+//     operand1 = 0;
+//     operand2 = 0;
+//     operation = null;
+//     let holder = a.toString();
+//     while (holder !== "") {
+//         let i = holder[0];
+//         if (!isNaN(i) && operation === null) {
+//             tempO1.push(i);
+//             holder = holder.slice(1);
+//             operand1 = Number(tempO1.join(''));
+//         } else if (!isNaN(i) && operation !== null) {
+//             tempO2.push(i);
+//             holder = holder.slice(1);
+//             operand2 = Number(tempO2.join(''));
+//             calcC(operand1, operand2, operation, holder);
+//         } else {
+//             operation = i;
+//             holder = holder.slice(1);
+//         }
+//     }
+// }
+
+// function calcC(o1, o2, op, holder) {
+//     switch (op) {
+//         case '+':
+//             result = o1 + o2;
+//             break;
+//         case '-':
+//             result = o1 - o2;
+//             break;
+//         case '*':
+//             result = o1 * o2;
+//             break;
+//         case '/':
+//             if (o2 !== 0) {
+//                 result = o1 / o2;
+//             } else {
+//                 console.log("Can't divide by zero");
+//             }
+//             break;
+//         case '!':
+//             result = factorial(o1);
+//             break;
+//         case '%':
+//             result = o1 % o2;
+//             break;
+//         case 'sin(':
+//             result = Math.sin(o1);
+//             break;
+//         case 'cos(':
+//             result = Math.cos(o1);
+//             break;
+//         case 'tan(':
+//             result = Math.tan(o1);
+//             break;
+//         case 'sin^-1(':
+//             result = Math.asin(o1);
+//             break;
+//         case 'cos^-1(':
+//             result = Math.acos(o1);
+//             break;
+//         case 'tan^-1(':
+//             result = Math.atan(o1);
+//             break;
+//         case 'log(':
+//             result = Math.log(o1);
+//             break;
+//         case 'ln(':
+//             result = Math.ln(o1);
+//             break;
+//         case 'E':
+//             result = Math.E;
+//             break;
+//         case '√(':
+//             result = Math.sqrt(o1);
+//             break;
+//         default:
+//             console.log("Invalid operator");
+//             return;
+//     }
+//     if (holder === "") {
+//         screen.value = result;
+//     } else {
+//         calc(holder);
+//     }
 // }
