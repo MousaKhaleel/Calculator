@@ -45,6 +45,7 @@ function calc(a) {
     operand2 = 0;
     operation = null;
     let holder = a.toString();
+    if(holder.includes('s'||'c'||'t')){
     while (holder !== "") {
         let i = holder[0];
         if (!isNaN(i) && operation === null) {
@@ -78,6 +79,112 @@ function calc(a) {
             holder = holder.slice(1);
         }
     }
+}
+else{
+    let operands = [];
+let operators = [];
+let result = 0;
+let tempOperand = [];
+
+    while (holder !== "") {
+        let char = holder[0];
+        if (!isNaN(char) || char === '.') {
+            tempOperand.push(char);
+            holder = holder.slice(1);
+            if (holder === "") {
+                operands.push(Number(tempOperand.join('')));
+            }
+        } else {
+            if (tempOperand.length > 0) {
+                operands.push(Number(tempOperand.join('')));
+                tempOperand = [];
+            }
+            operators.push(char);
+            holder = holder.slice(1);
+        }
+    }
+    calculateResult();
+
+function calculateResult() {
+    result = operands[0];
+    for (let i = 0; i < operators.length; i++) {
+        let op = operators[i];
+        let nextOperand = operands[i + 1];
+        switch (op) {
+            case '+':
+                result += nextOperand;
+                break;
+            case '-':
+                result -= nextOperand;
+                break;
+            case '*':
+                result *= nextOperand;
+                break;
+            case '/':
+                if (nextOperand !== 0) {
+                    result /= nextOperand;
+                } else {
+                    console.log("Can't divide by zero");
+                    return;
+                }
+                break;
+            case '!':
+                result = factorial(result);
+                break;
+            case '%':
+                result %= nextOperand;
+                break;
+            default:
+                if (op.startsWith('s') || op.startsWith('c') || op.startsWith('t')) {
+                    result = calculateTrigFunction(op, nextOperand);
+                } else if (op.startsWith('log') || op.startsWith('ln') || op.startsWith('sqrt')) {
+                    result = calculateLogFunction(op, nextOperand);
+                } else {
+                    console.log("Invalid operator or function");
+                    return;
+                }
+        }
+    }
+    screen.value = result;
+}
+
+function calculateTrigFunction(op, angle) {
+    let functionName = op.substring(0, 3);
+    angle = angle * (Math.PI / 180); // Convert angle to radians
+    switch (functionName) {
+        case 'sin':
+            return Math.sin(angle);
+        case 'cos':
+            return Math.cos(angle);
+        case 'tan':
+            return Math.tan(angle);
+        case 'asin':
+            return Math.asin(angle);
+        case 'acos':
+            return Math.acos(angle);
+        case 'atan':
+            return Math.atan(angle);
+        default:
+            console.log("Invalid trigonometric function");
+            return;
+    }
+}
+
+function calculateLogFunction(op, num) {
+    let functionName = op.substring(0, 3);
+    switch (functionName) {
+        case 'log':
+            return Math.log10(num);
+        case 'ln':
+            return Math.log(num);
+        case 'sqrt':
+            return Math.sqrt(num);
+        default:
+            console.log("Invalid logarithmic function");
+            return;
+    }
+}
+}
 }
 
 function calcC(o1, o2, op, holder) {
@@ -319,8 +426,123 @@ function replace(){
 //     else
 //     screen.value = toRad(result);
 // }
+// ////////////////////////////////////////////////////////////////////////////////////
 
-// ///////////////////////////packup//////////////////////////////////
+
+// //////////////////////works with 1+1+1//////////////////////////////////
+// let operands = [];
+// let operators = [];
+// let result = 0;
+// let tempOperand = [];
+
+// function calc(expression) {
+//     operands = [];
+//     operators = [];
+//     let holder = expression.toString();
+//     while (holder !== "") {
+//         let char = holder[0];
+//         if (!isNaN(char) || char === '.') {
+//             tempOperand.push(char);
+//             holder = holder.slice(1);
+//             if (holder === "") {
+//                 operands.push(Number(tempOperand.join('')));
+//             }
+//         } else {
+//             if (tempOperand.length > 0) {
+//                 operands.push(Number(tempOperand.join('')));
+//                 tempOperand = [];
+//             }
+//             operators.push(char);
+//             holder = holder.slice(1);
+//         }
+//     }
+//     calculateResult();
+// }
+
+// function calculateResult() {
+//     result = operands[0];
+//     for (let i = 0; i < operators.length; i++) {
+//         let op = operators[i];
+//         let nextOperand = operands[i + 1];
+//         switch (op) {
+//             case '+':
+//                 result += nextOperand;
+//                 break;
+//             case '-':
+//                 result -= nextOperand;
+//                 break;
+//             case '*':
+//                 result *= nextOperand;
+//                 break;
+//             case '/':
+//                 if (nextOperand !== 0) {
+//                     result /= nextOperand;
+//                 } else {
+//                     console.log("Can't divide by zero");
+//                     return;
+//                 }
+//                 break;
+//             case '!':
+//                 result = factorial(result);
+//                 break;
+//             case '%':
+//                 result %= nextOperand;
+//                 break;
+//             default:
+//                 if (op.startsWith('s') || op.startsWith('c') || op.startsWith('t')) {
+//                     result = calculateTrigFunction(op, nextOperand);
+//                 } else if (op.startsWith('log') || op.startsWith('ln') || op.startsWith('sqrt')) {
+//                     result = calculateLogFunction(op, nextOperand);
+//                 } else {
+//                     console.log("Invalid operator or function");
+//                     return;
+//                 }
+//         }
+//     }
+//     screen.value = result;
+// }
+
+
+// function calculateTrigFunction(op, angle) {
+//     let functionName = op.substring(0, 3);
+//     angle = angle * (Math.PI / 180); // Convert angle to radians
+//     switch (functionName) {
+//         case 'sin':
+//             return Math.sin(angle);
+//         case 'cos':
+//             return Math.cos(angle);
+//         case 'tan':
+//             return Math.tan(angle);
+//         case 'asin':
+//             return Math.asin(angle);
+//         case 'acos':
+//             return Math.acos(angle);
+//         case 'atan':
+//             return Math.atan(angle);
+//         default:
+//             console.log("Invalid trigonometric function");
+//             return;
+//     }
+// }
+
+// function calculateLogFunction(op, num) {
+//     let functionName = op.substring(0, 3);
+//     switch (functionName) {
+//         case 'log':
+//             return Math.log10(num);
+//         case 'ln':
+//             return Math.log(num);
+//         case 'sqrt':
+//             return Math.sqrt(num);
+//         default:
+//             console.log("Invalid logarithmic function");
+//             return;
+//     }
+// }
+// //////////////////////////////////////////////////////////////////////////////
+
+
+// ///////////////////////////packup works with sin//////////////////////////////////
 
 // let operand1 = 0;
 // let operand2 = 0;
