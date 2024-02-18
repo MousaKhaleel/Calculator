@@ -16,11 +16,12 @@ let root=document.getElementById('root');
 let log=document.getElementById('log');
 let ln=document.getElementById('ln');
 
-
+// //////////////////////////////////////////////////////////////////
 
 function setText(sent) {
     screen.value+=sent;
 }
+// //////////////////////////////////////////////////////////////////
 function clearCE() {
     let temp = screen.value;
     temp = temp.toString();
@@ -28,6 +29,180 @@ function clearCE() {
     screen.value = temp;
 }
 
+// //////////////////////////////////////////////////////////////////
+
+let operand1 = 0;
+let operand2 = 0;
+let operation = null;
+let result = 0;
+let tempO1 = [];
+let tempO2 = [];
+
+function calc(a) {
+    tempO1 = [];
+    tempO2 = [];
+    operand1 = 0;
+    operand2 = 0;
+    operation = null;
+    let holder = a.toString();
+    while (holder !== "") {
+        let i = holder[0];
+        if (!isNaN(i) && operation === null) {
+            tempO1.push(i);
+            holder = holder.slice(1);
+            operand1 = Number(tempO1.join(''));
+        } else if (!isNaN(i) && operation !== null) {
+            tempO2.push(i);
+            holder = holder.slice(1);
+            operand2 = Number(tempO2.join(''));
+            calcC(operand1, operand2, operation, holder);
+        } else {
+            operation = i;
+            holder = holder.slice(1);
+        }
+    }
+}
+
+function calcC(o1, o2, op, holder) {
+    switch (op) {
+        case '+':
+            result = o1 + o2;
+            break;
+        case '-':
+            result = o1 - o2;
+            break;
+        case '*':
+            result = o1 * o2;
+            break;
+        case '/':
+            if (o2 !== 0) {
+                result = o1 / o2;
+            } else {
+                console.log("Can't divide by zero");
+            }
+            break;
+        case '!':
+            result = factorial(o1);
+            break;
+        case '%':
+            result = o1 % o2;
+            break;
+        case 'sin(':
+            result = Math.sin();
+            break;
+        case 'cos(':
+            result = Math.cos();
+            break;
+        case 'tan(':
+            result = Math.tan();
+            break;
+        case 'log(':
+            result = Math.log();
+            break;
+        case 'E':
+            result = Math.E;
+            break;
+        case '√(':
+            result = Math.sqrt();
+            break;
+        default:
+            console.log("Invalid operator");
+            return;
+    }
+    if (holder === "") {
+        screen.value = result;
+    } else {
+        calc(holder);
+    }
+}
+
+
+
+function factorial(f) {
+    let fact=1;
+    while (f>1) {
+        fact*=f;
+        f--;
+    }
+    return fact;
+}
+// //////////////////////////////////////////////////////////////////
+function toggle() {
+    if (deg.disabled) {
+        rad.disabled = true;
+        deg.disabled = false;
+    }
+    else{
+        rad.disabled = false;
+        deg.disabled = true;
+    }
+}
+// //////////////////////////////////////////////////////////////////
+function toRad(v) {
+    let radian=v*(Math.PI/180);
+    return radian;
+}
+
+// //////////////////////////////////////////////////////////////////
+
+function replace(){
+    if (lnv.value=='normal') {
+        lnv.value='swaped';
+
+        sin.innerHTML='sin<sup>-1</sup>';
+        sin.value='sin^-1(';
+
+        cos.innerHTML='cos<sup>-1</sup>';
+        cos.value='cos^-1(';
+
+        tan.innerHTML='tan<sup>-1</sup>';
+        tan.value='tan^-1(';
+
+        ans.innerHTML='Rnd';
+        ans.value='Rnd';
+
+        pow.innerHTML='y<sup>√x</sup>';
+        pow.value='y^√x';
+
+        root.innerHTML='x<sup>2</sup>';
+        root.value='x^2';
+
+        log.innerHTML='10<sup>x</sup>';
+        log.value='10^x';
+
+        ln.innerHTML='e<sup>x</sup>';
+        ln.value='e^x';
+
+    } else {
+        lnv.value='normal';
+        sin.innerHTML='sin';
+        sin.value='sin(';
+
+        cos.innerHTML='cos';
+        cos.value='cos(';
+
+        tan.innerHTML='tan';
+        tan.value='tan(';
+
+        ans.innerHTML='Ans';
+        ans.value='Ans';
+
+        pow.innerHTML='x<sup>y</sup>';
+        pow.value='x^y';
+
+        root.innerHTML='√';
+        root.value='√(';
+
+        log.innerHTML='log';
+        log.value='log(';
+
+        ln.innerHTML='ln';
+        ln.value='ln(';
+    }
+}
+
+
+// ///////////////////////////discarded of///////////////////////////////////////
 // function prepareOp(a) {
 //     let result = parseFloat(a[0]);
 //     // let result=0;
@@ -101,85 +276,3 @@ function clearCE() {
 //     else
 //     screen.value = toRad(result);
 // }
-
-function toggle() {
-    if (deg.disabled) {
-        rad.disabled = true;
-        deg.disabled = false;
-    }
-    else{
-        rad.disabled = false;
-        deg.disabled = true;
-    }
-}
-
-function toRad(v) {
-    let radian=v*(Math.PI/180);
-    return radian;
-}
-
-function factorial(f) {
-    let fact=1;
-    while (f>1) {
-        fact*=f;
-        f--;
-    }
-    return fact;
-}
-
-function replace(){
-    if (lnv.value=='normal') {
-        lnv.value='swaped';
-
-        sin.innerText='sin^-1';
-        sin.value='sin^-1(';
-
-        cos.innerText='cos^-1';
-        cos.value='cos^-1(';
-
-        tan.innerText='tan^-1';
-        tan.value='tan^-1(';
-
-        ans.innerText='Rnd';
-        ans.value='Rnd';
-
-        pow.innerText='y^√x';
-        pow.value='y^√x';
-
-        root.innerText='x^2';
-        root.value='x^2';
-
-        log.innerText='10^x';
-        log.value='10^x';
-
-        ln.innerText='e^x';
-        ln.value='e^x';
-
-    } else {
-        lnv.value='normal';
-        sin.innerText='sin';
-        sin.value='sin(';
-
-        cos.innerText='cos';
-        cos.value='cos(';
-
-        tan.innerText='tan';
-        tan.value='tan(';
-
-        ans.innerText='Ans';
-        ans.value='Ans';
-
-        pow.innerText='x^y';
-        pow.value='x^y';
-
-        root.innerText='√';
-        root.value='√(';
-
-        log.innerText='log';
-        log.value='log(';
-
-        ln.innerText='ln';
-        ln.value='ln(';
-    }
-}
-
