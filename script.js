@@ -335,6 +335,8 @@ function toRad(v) {
 function replace(){
     if (lnv.value=='normal') {
         lnv.value='swaped';
+        lnv.style.backgroundColor='rgb(241, 243, 244)';
+        lnv.style.boxShadow='0 0 0 1px black';
 
         sin.innerHTML='sin<sup>-1</sup>';
         sin.value='sin^-1(';
@@ -362,6 +364,9 @@ function replace(){
 
     } else {
         lnv.value='normal';
+        lnv.style.backgroundColor='rgb(218, 220, 224)';
+        lnv.style.boxShadow='0 0 0 0px black';
+        
         sin.innerHTML='sin';
         sin.value='sin(';
 
