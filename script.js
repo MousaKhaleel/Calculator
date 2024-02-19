@@ -45,7 +45,7 @@ function calc(a) {
     operand2 = 0;
     operation = null;
     let holder = a.toString();
-    if(holder.includes('s'||'c'||'t')){
+    if(holder.includes('s'||'c'||'t')||holder.startsWith('l')){
     while (holder !== "") {
         let i = holder[0];
         if (!isNaN(i) && operation === null) {
@@ -61,7 +61,7 @@ function calc(a) {
             calcC(operand1, operand2, operation, holder);
         }
         // ///////////////////////////////////////////////////////////////////////
-        else if (i === 's'||'c'||'t') {
+        else if (i === 's'||'c'||'t'||'l') {
             let func = "";
             let j = holder.indexOf(')');
             if (j !== -1) {
@@ -137,7 +137,7 @@ function calculateResult() {
             default:
                 if (op.startsWith('s') || op.startsWith('c') || op.startsWith('t')) {
                     result = calculateTrigFunction(op, nextOperand);
-                } else if (op.startsWith('log') || op.startsWith('ln') || op.startsWith('sqrt')) {
+                } else if (op.includes('log') || op.startsWith('l') || op.includes('sqrt')) {
                     result = calculateLogFunction(op, nextOperand);
                 } else {
                     console.log("Invalid operator or function");
@@ -150,7 +150,7 @@ function calculateResult() {
 
 function calculateTrigFunction(op, angle) {
     let functionName = op.substring(0, 3);
-    angle = angle * (Math.PI / 180); // Convert angle to radians
+    angle = angle * (Math.PI / 180);
     switch (functionName) {
         case 'sin':
             return Math.sin(angle);
@@ -226,6 +226,7 @@ function calcFunction(func,holder) {
     console.log(func)
     let functionName = func.substring(0, func.indexOf('('));
     let angle = parseFloat(func.substring(func.indexOf('(') + 1, func.indexOf(')')));
+    console.log(angle)
     if(deg.disabled){
     switch (functionName) {
         case 'sin':
