@@ -137,7 +137,7 @@ function calculateResult() {
             default:
                 if (op.startsWith('s') || op.startsWith('c') || op.startsWith('t')) {
                     result = calculateTrigFunction(op, nextOperand);
-                } else if (op.includes('log') || op.startsWith('l') || op.includes('sqrt')) {
+                } else if (op.includes('log') || op.startsWith('l') || op.includes('sq')) {
                     result = calculateLogFunction(op, nextOperand);
                 } else {
                     console.log("Invalid operator or function");
@@ -177,7 +177,7 @@ function calculateLogFunction(op, num) {
             return Math.log10(num);
         case 'ln':
             return Math.log(num);
-        case 'sqrt':
+        case 'sq':
             return Math.sqrt(num);
         default:
             console.log("Invalid logarithmic function");
@@ -225,6 +225,7 @@ function calcC(o1, o2, op, holder) {
 function calcFunction(func,holder) {
     console.log(func)
     let functionName = func.substring(0, func.indexOf('('));
+    console.log(functionName)
     let angle = parseFloat(func.substring(func.indexOf('(') + 1, func.indexOf(')')));
     console.log(angle)
     if(deg.disabled){
@@ -253,7 +254,7 @@ function calcFunction(func,holder) {
         case 'ln':
             result = Math.log(angle);
             break;
-        case 'sqrt':
+        case 'sq':
             result = Math.sqrt(angle);
             break;
         default:
@@ -287,7 +288,7 @@ else{
         case 'ln':
             result = Math.log(angle);
             break;
-        case 'sqrt':
+        case 'sq':
             result = Math.sqrt(angle);
             break;
         default:
@@ -377,7 +378,7 @@ function replace(){
         pow.value='x^y';
 
         root.innerHTML='√';
-        root.value='√(';
+        root.value='sq(';
 
         log.innerHTML='log';
         log.value='log(';
