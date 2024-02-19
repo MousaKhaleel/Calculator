@@ -249,7 +249,7 @@ function calcFunction(func,holder) {
             result = Math.atan(angle);
             break;
         case 'log':
-            result = Math.log(angle);
+            result = Math.log10(angle);
             break;
         case 'ln':
             result = Math.log(angle);
@@ -283,7 +283,7 @@ else{
             result = Math.atan(toRad(angle));
             break;
         case 'log':
-            result = Math.log(angle);
+            result = Math.log10(angle);
             break;
         case 'ln':
             result = Math.log(angle);
