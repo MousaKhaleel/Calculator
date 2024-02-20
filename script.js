@@ -99,7 +99,11 @@ let tempOperand = [];
                 operands.push(Number(tempOperand.join('')));
                 tempOperand = [];
             }
-            operators.push(char);
+            if(char=='('||char==')'||char=='o'||(char=='s'&&operators[operators.length-1]=='c')){
+                char=char.slice(1);
+            }
+        else
+        operators.push(char);
             holder = holder.slice(1);
         }
     }
@@ -152,11 +156,11 @@ function calculateTrigFunction(op, angle) {
     let functionName = op.substring(0, 3);
     angle = angle * (Math.PI / 180);
     switch (functionName) {
-        case 'sin':
+        case 's':
             return Math.sin(angle);
-        case 'cos':
+        case 'c':
             return Math.cos(angle);
-        case 'tan':
+        case 't':
             return Math.tan(angle);
         case 'asin':
             return Math.asin(angle);
